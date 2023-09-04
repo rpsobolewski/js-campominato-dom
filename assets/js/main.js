@@ -6,6 +6,7 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 const listaEl = document.getElementById('lista');
 
 let bombNumbers = [];
+let pointNumbers = [];
 
 let p = 0;
 document.querySelector('button').addEventListener('click', function (e) {
@@ -45,7 +46,21 @@ document.querySelector('button').addEventListener('click', function (e) {
 
 
 
+
     console.log(bombNumbers)
+
+
+    i = 1;
+    while (i <= difficolta) {
+        if (bombNumbers.includes(i)) {
+
+            i++;
+        } else {
+            pointNumbers.push(i);
+            i++;
+        }
+    }
+    console.log(pointNumbers);
 
 
 
@@ -78,25 +93,39 @@ function fieldGeneration(difficolta) {
         listaEl.append(itemEl)
 
 
-
+        let cliccati = [];
 
         itemEl.addEventListener('click', function () {
 
+
+
             if (bombNumbers.includes(i)) {
 
-                itemEl.classList.toggle("bg-red")
+                itemEl.classList.add("bg-red")
                 document.getElementById("tutto").classList.add("none");
                 document.getElementById("perso").classList.toggle("none");
                 console.log("hai perso")
                 console.log(i)
 
-            } else {
-                itemEl.classList.add("bg-blue");
-                console.log(i)
-                p++;
-                let punteggio = document.getElementById("punteggio");
-                punteggio.innerHTML = p;
             }
+            if (cliccati.indexOf(i) === -1) {
+                cliccati.push(i);
+                p++;
+                itemEl.classList.add("bg-blue");
+                const punteggio = document.getElementById("punteggio");
+                punteggio.innerHTML = p;
+                console.log(cliccati);
+
+            } else {
+                console.log("gia cliccato");
+            }
+
+
+
+
+
+
+
 
         })
     }
