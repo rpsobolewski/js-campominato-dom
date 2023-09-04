@@ -9,6 +9,16 @@ body{
     width: 52%;
     margin: auto;
 }
+.widthMax{
+    width: 52%;
+}
+
+.widthMed{
+    width: 47%;
+}
+.widthMin{
+    width: 38%;
+}
 
 button{
     padding: 10px;
