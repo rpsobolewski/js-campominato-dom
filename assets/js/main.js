@@ -5,7 +5,7 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 
 const listaEl = document.getElementById('lista');
 
-var bombNumbers = [];
+let bombNumbers = [];
 
 let p = 0;
 document.querySelector('button').addEventListener('click', function (e) {
@@ -74,7 +74,7 @@ function fieldGeneration(difficolta) {
 
 
         const itemEl = document.createElement('li')
-        itemEl.append(".")
+        itemEl.append(i)
         listaEl.append(itemEl)
 
 
@@ -85,13 +85,17 @@ function fieldGeneration(difficolta) {
             if (bombNumbers.includes(i)) {
 
                 itemEl.classList.toggle("bg-red")
+                document.getElementById("tutto").classList.add("none");
+                document.getElementById("perso").classList.toggle("none");
                 console.log("hai perso")
                 console.log(i)
 
             } else {
-                itemEl.classList.toggle("bg-blue");
+                itemEl.classList.add("bg-blue");
                 console.log(i)
                 p++;
+                let punteggio = document.getElementById("punteggio");
+                punteggio.innerHTML = p;
             }
 
         })

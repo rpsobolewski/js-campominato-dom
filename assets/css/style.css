@@ -43,7 +43,7 @@ li{
     text-align: center;
     padding-top: 35px;
     border: 1px solid black;
-    color: rgba(240, 248, 255, 0);
+    color: rgb(245, 246, 247);
 }
 .none{
     display: none;
@@ -54,4 +54,9 @@ li{
 
 .bg-red{
     background-color: red;
+}
+#perso{
+    font-size: 50px;
+    text-align: center;
+    
 }
