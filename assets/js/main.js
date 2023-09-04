@@ -5,22 +5,59 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 
 const listaEl = document.getElementById('lista');
 
+var bombNumbers = [];
 
-
-
+let p = 0;
 document.querySelector('button').addEventListener('click', function (e) {
-const difficolta = document.getElementById("difficolta").value;
-   
+    const difficolta = document.getElementById("difficolta").value;
 
-if (Number(difficolta) == 100 ){
-    document.getElementById("body").classList.add("widthMax")
-} else if (Number(difficolta) == 81 ){
-    document.getElementById("body").classList.add("widthMed")
-} else {
-    document.getElementById("body").classList.add("widthMin")
-}
 
-fieldGeneration(difficolta); 
+    //per rendere quadrato
+    if (Number(difficolta) == 100) {
+        document.getElementById("body").classList.add("widthMax")
+    } else if (Number(difficolta) == 81) {
+        document.getElementById("body").classList.add("widthMed")
+    } else {
+        document.getElementById("body").classList.add("widthMin")
+    }
+
+    //generazione numeri bomba
+
+
+    let i = 0;
+    while (i < 16) {
+        let randomNumber = Math.floor(Math.random() * Number(difficolta) + 1);
+
+        //per non far ripetere i numeri
+        if (bombNumbers.includes(randomNumber)) {
+            console.log("il numero è gia presente")
+        } else {
+            bombNumbers.push(randomNumber);
+            i++;
+        }
+
+    }
+
+
+
+
+
+
+
+
+    console.log(bombNumbers)
+
+
+
+
+
+
+
+
+
+    document.getElementById("buttonSelector").classList.add("none");
+
+    fieldGeneration(difficolta);
 })
 
 
@@ -28,26 +65,37 @@ fieldGeneration(difficolta);
 
 
 function fieldGeneration(difficolta) {
-    
-
-
- for (let i = 1; i <= difficolta; i++) {
 
 
 
-
-    const itemEl = document.createElement('li')
-    itemEl.append(".")
-    listaEl.append(itemEl)
+    for (let i = 1; i <= difficolta; i++) {
 
 
 
 
-    itemEl.addEventListener('click', function () {
-     itemEl.classList.toggle("bg-blue"); 
-     console.log(i)  
-    })
-}
+        const itemEl = document.createElement('li')
+        itemEl.append(".")
+        listaEl.append(itemEl)
+
+
+
+
+        itemEl.addEventListener('click', function () {
+
+            if (bombNumbers.includes(i)) {
+
+                itemEl.classList.toggle("bg-red")
+                console.log("hai perso")
+                console.log(i)
+
+            } else {
+                itemEl.classList.toggle("bg-blue");
+                console.log(i)
+                p++;
+            }
+
+        })
+    }
 }
 
 
@@ -59,3 +107,12 @@ annulla.addEventListener('click', function () {
 
     location.reload();
 });
+
+
+
+
+
+
+
+
+
