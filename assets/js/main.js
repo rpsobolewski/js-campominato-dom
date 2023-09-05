@@ -6,7 +6,9 @@ Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed 
 const listaEl = document.getElementById('lista');
 
 let bombNumbers = [];
-let pointNumbers = [];
+let goodNumbers = [];
+let pointNumbers = 0;
+let maxPoints = 0;
 
 let p = 0;
 document.querySelector('button').addEventListener('click', function (e) {
@@ -16,10 +18,15 @@ document.querySelector('button').addEventListener('click', function (e) {
     //per rendere quadrato
     if (Number(difficolta) == 100) {
         document.getElementById("body").classList.add("widthMax")
+        maxPoints = 84;
     } else if (Number(difficolta) == 81) {
         document.getElementById("body").classList.add("widthMed")
+        maxPoints = 65;
+
     } else {
         document.getElementById("body").classList.add("widthMin")
+        maxPoints = 33;
+
     }
 
     //generazione numeri bomba
@@ -56,11 +63,11 @@ document.querySelector('button').addEventListener('click', function (e) {
 
             i++;
         } else {
-            pointNumbers.push(i);
+            goodNumbers.push(i);
             i++;
         }
     }
-    console.log(pointNumbers);
+    console.log(goodNumbers);
 
 
 
@@ -100,7 +107,7 @@ function fieldGeneration(difficolta) {
 
 
             if (bombNumbers.includes(i)) {
-
+                p--;
                 itemEl.classList.add("bg-red")
                 document.getElementById("tutto").classList.add("none");
                 document.getElementById("perso").classList.toggle("none");
@@ -115,6 +122,18 @@ function fieldGeneration(difficolta) {
                 const punteggio = document.getElementById("punteggio");
                 punteggio.innerHTML = p;
                 console.log(cliccati);
+                pointNumbers++;
+
+
+                if (pointNumbers == maxPoints) {
+                    
+                    
+
+                    document.getElementById("tutto").classList.add("none");
+                    document.getElementById("vinto").classList.toggle("none");
+                } else {
+                    console.log(pointNumbers);
+                }
 
             } else {
                 console.log("gia cliccato");

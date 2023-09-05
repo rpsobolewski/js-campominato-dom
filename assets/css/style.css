@@ -55,7 +55,7 @@ li{
 .bg-red{
     background-color: red;
 }
-#perso{
+#perso, #vinto{
     font-size: 50px;
     text-align: center;
     
